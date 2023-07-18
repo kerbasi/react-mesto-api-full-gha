@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const NotFoundError = require('../errors/not-found-error');
+const notFoundError = require('../controllers/notFoundError');
 
-router.all('/*', NotFoundError);
+router.all('/*', notFoundError);
 
 module.exports = router;
