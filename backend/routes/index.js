@@ -12,11 +12,11 @@ const {
 } = require('../controllers/users');
 const { celebrateValidationSignin, celebrateValidationSignup } = require('../middlewares/celebrateValidation');
 
-app.post('/signin', celebrate(celebrateValidationSignin), login);
-app.post('/signup', celebrate(celebrateValidationSignup), createUser);
+router.post('/signin', celebrate(celebrateValidationSignin), login);
+router.post('/signup', celebrate(celebrateValidationSignup), createUser);
 
-app.use('/cards', auth, cardRouter);
-app.use('/users', auth, userRouter);
-app.all('/*', auth, NotFoundError);
+router.use('/cards', auth, cardRouter);
+router.use('/users', auth, userRouter);
+router.all('/*', auth, NotFoundError);
 
 module.exports = router;
