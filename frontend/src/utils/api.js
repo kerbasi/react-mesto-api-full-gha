@@ -95,7 +95,7 @@
 }
 
 const api = new Api({
-  baseUrl: "http://localhost:4000/",
+  baseUrl: "api.kerbasi.nomoredomains.xyz",
   headers: {
     "Content-Type": "application/json",
   },
