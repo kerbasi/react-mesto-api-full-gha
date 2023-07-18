@@ -24,7 +24,7 @@ mongoose.connect(DB_URL);
 app.use(requestLogger);
 app.use(limiter);
 
-app.use(cors());
+app.use(cors({ origin: true }));
 
 app.use(helmet());
 
