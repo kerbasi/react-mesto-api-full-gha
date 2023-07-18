@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const { celebrate } = require('celebrate');
@@ -25,7 +25,6 @@ const auth = require('./middlewares/auth');
 
 const { PORT, DB_URL } = process.env;
 
-app.use(cors());
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -34,13 +33,14 @@ const limiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-mongoose.connect(DB_URL, {
-});
+mongoose.connect(DB_URL);
 
 app.use(limiter);
 app.use(helmet());
 
 app.use(express.json());
+
+app.use(cors());
 
 app.use(requestLogger);
 
