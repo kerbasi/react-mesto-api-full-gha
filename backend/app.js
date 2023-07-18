@@ -23,7 +23,7 @@ const {
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 
-const { PORT, DB_URL } = process.env;
+const { PORT = 4000, DB_URL = 'mongodb://api.kerbasi.nomoredomains.xyz:27017/mestodb' } = process.env;
 
 
 const limiter = rateLimit({
