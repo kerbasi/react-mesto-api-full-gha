@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
@@ -24,7 +24,7 @@ mongoose.connect(DB_URL);
 app.use(requestLogger);
 app.use(limiter);
 
-app.use(cors({ origin: 'http://kerbasi.nomoredomains.xyz' }));
+app.use(cors());
 
 app.use(helmet());
 
