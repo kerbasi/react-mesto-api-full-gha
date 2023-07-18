@@ -21,7 +21,7 @@ const {
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 
-const { PORT = 3000, DB_URL = 'mongodb://api.kerbasi.nomoredomains.xyz:27017/mestodb' } = process.env;
+const { PORT = 4000, DB_URL = 'mongodb://api.kerbasi.nomoredomains.xyz:27017/mestodb' } = process.env;
 
 app.use(cors());
 
