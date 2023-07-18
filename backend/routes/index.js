@@ -4,8 +4,9 @@ const { celebrate } = require('celebrate');
 
 const userRouter = require('./users');
 const cardRouter = require('./cards');
+const notFoundRouter = require('./notFound');
 const auth = require('../middlewares/auth');
-const NotFoundError = require('../errors/not-found-error');
+
 const {
   createUser,
   login,
@@ -17,6 +18,6 @@ router.post('/signup', celebrate(celebrateValidationSignup), createUser);
 
 router.use('/cards', auth, cardRouter);
 router.use('/users', auth, userRouter);
-router.all('/*', auth, NotFoundError);
+router.use('*', auth, notFoundRouter);
 
 module.exports = router;
