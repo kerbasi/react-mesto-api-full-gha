@@ -17,12 +17,20 @@
     return res.json();
   }
 
+  setToken(token) {
+    this._headers = { ...this._headers, Authorization: `Bearer ${token}` }
+  }
+
+  deleteToken() {
+    this._headers.Authorization = '';
+  }
+
   getInitialCards() {
     return this._request("cards", { headers: this._headers });
   }
 
   getUserInfo() {
-    return this._request("users/me", { headers: this._headers });
+    return this._request("users/me", { method: "GET", headers: this._headers });
   }
 
   setUserInfo({ title, data }) {
@@ -87,9 +95,8 @@
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-63/",
+  baseUrl: "http://localhost:4000/",
   headers: {
-    authorization: "1d6e2ff2-9c18-4685-a3c5-e532faea5955",
     "Content-Type": "application/json",
   },
 });

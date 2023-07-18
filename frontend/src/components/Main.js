@@ -50,16 +50,18 @@ function Main({
         </button>
       </section>
       <section className='elements main__elements'>
-        {cards.map((cardData) => (
-          <Card
-            key={cardData._id}
-            data={cardData}
-            onCardClick={onCardClick}
-            onClose={onClose}
-            onCardLike={onCardLike}
-            onCardDelete={onCardDelete}
-          />
-        ))}
+        {cards.map((cardData) => {
+          return (
+            < Card
+              key={cardData._id}
+              data={cardData}
+              onCardClick={onCardClick}
+              onClose={onClose}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
+            />
+          )
+        })}
       </section>
     </main>
   );

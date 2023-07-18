@@ -1,4 +1,4 @@
-﻿export const BASE_URL = "https://auth.nomoreparties.co/";
+﻿export const BASE_URL = "http://localhost:4000/";
 
 const getResponseData = (res, status) => {
   if (!res.ok || (status && res.status !== status)) {

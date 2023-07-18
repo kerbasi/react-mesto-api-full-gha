@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors')
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const { celebrate } = require('celebrate');
 
 const app = express();
+
 const mongoose = require('mongoose');
 
 const { errors } = require('celebrate');
@@ -17,11 +19,13 @@ const {
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 
-const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+const { PORT = 4000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+
+app.use(cors());
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  max: 1000, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });

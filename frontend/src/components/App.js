@@ -44,11 +44,13 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      auth.tokenCheck(localStorage.getItem("token")).then((res) => {
+      const token = localStorage.getItem("token")
+      auth.tokenCheck(token).then((res) => {
+        api.setToken(token);
         api
           .getUserInfo()
           .then((data) => {
-            setCurrentUser({ ...data, email: res.data.email });
+            setCurrentUser(data);
           })
           .catch((err) => console.log(err));
         api
@@ -93,6 +95,7 @@ function App() {
 
   const handleSignout = () => {
     localStorage.removeItem("token");
+    api.deleteToken();
     setIsLoggedIn(false);
     setCurrentUser(null);
   };
@@ -128,7 +131,7 @@ function App() {
   };
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((id) => id === currentUser._id);
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
@@ -182,7 +185,7 @@ function App() {
     api
       .setCard({ name, link })
       .then((newCard) => {
-        setCards((prev) => [newCard, ...prev]);
+        setCards((prev) => [newCard.data, ...prev]);
         closeAllPopups();
       })
       .catch((err) => console.log(err))

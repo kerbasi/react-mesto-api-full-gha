@@ -16,16 +16,14 @@ function Card({ onCardClick, data, onCardLike, onCardDelete }) {
     onCardDelete(data);
   };
 
-  const isOwn = data.owner._id === currentUser._id;
-  const isLiked = data.likes.some((i) => i._id === currentUser._id);
+  const isOwn = data.owner === currentUser._id;
+  const isLiked = data.likes.some((id) => id === currentUser._id);
 
-  const cardLikeButtonClassName = `element__heart-image ${
-    isLiked && "element__heart-image_active"
-  }`;
+  const cardLikeButtonClassName = `element__heart-image ${isLiked && "element__heart-image_active"
+    }`;
 
-  const cardDeleteButtonClassName = `element__trash-image ${
-    isOwn && "element__trash-image_visible"
-  }`;
+  const cardDeleteButtonClassName = `element__trash-image ${isOwn && "element__trash-image_visible"
+    }`;
 
   return (
     <article className='element'>
@@ -42,7 +40,7 @@ function Card({ onCardClick, data, onCardLike, onCardDelete }) {
           type='button'
           onClick={handleLikeClick}
         ></button>
-        <p className='element__heart-counter'>{data.likes.length}</p>
+        <p className='element__heart-counter'>{data.likes ? data.likes.length : 0}</p>
       </div>
       {isOwn && (
         <button
