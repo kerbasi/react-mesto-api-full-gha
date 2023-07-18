@@ -10,7 +10,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 84.201.162.122
+IP 84.201.162.122
 
 Frontend https://kerbasi.nomoredomains.xyz
 
