@@ -24,7 +24,7 @@ mongoose.connect(DB_URL);
 app.use(requestLogger);
 app.use(limiter);
 
-app.use(cors({ origin: true }));
+app.use(cors({ origin: 'http://kerbasi.nomoredomains.xyz' }));
 
 app.use(helmet());
 
