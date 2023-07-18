@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors')
 const rateLimit = require('express-rate-limit');
@@ -21,7 +23,7 @@ const {
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 
-const { PORT = 4000, DB_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
+const { PORT, DB_URL } = process.env;
 
 app.use(cors());
 
