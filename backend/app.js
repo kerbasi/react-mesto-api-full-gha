@@ -10,6 +10,8 @@ const mongoose = require('mongoose');
 
 const { errors } = require('celebrate');
 
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+
 const { celebrateValidationSignin, celebrateValidationSignup } = require('./middlewares/celebrateValidation');
 const errorHandler = require('./middlewares/error-handler');
 
@@ -37,12 +39,17 @@ app.use(limiter);
 app.use(helmet());
 
 app.use(express.json());
+
+app.use(requestLogger);
+
 app.post('/signin', celebrate(celebrateValidationSignin), login);
 app.post('/signup', celebrate(celebrateValidationSignup), createUser);
 
 app.use('/cards', auth, require('./routes/cards'));
 app.use('/users', auth, require('./routes/users'));
 app.all('/*', auth, require('./controllers/error'));
+
+app.use(errorLogger);
 
 app.use(errors());
 
