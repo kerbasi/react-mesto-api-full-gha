@@ -82,8 +82,7 @@ function App() {
     auth
       .login(email, password)
       .then((res) => {
-        console.log(res)
-        if (res) {
+        if (res.token) {
           localStorage.setItem("token", res.token);
           setIsLoggedIn(true);
           navigate("/", { replace: true });
