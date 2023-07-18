@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
@@ -25,6 +25,7 @@ const auth = require('./middlewares/auth');
 
 const { PORT = 4000, DB_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 
+console.log(PORT, DB_URL);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
