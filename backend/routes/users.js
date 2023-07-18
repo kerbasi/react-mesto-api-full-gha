@@ -12,12 +12,7 @@ const {
 
 router.get('/', findAllUsers);
 
-router.get('/me', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required().min(8),
-  }),
-}), findMe);
+router.get('/me', findMe);
 
 router.get('/:userId', celebrate({
   params: Joi.object().keys({
