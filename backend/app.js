@@ -15,6 +15,7 @@ const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const errorHandler = require('./middlewares/error-handler');
+const { log } = require('winston');
 
 const { PORT = 3000, DB_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 
@@ -48,4 +49,5 @@ app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}`);
 });
