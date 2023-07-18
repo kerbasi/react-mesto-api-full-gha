@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const TokenError = require('../errors/token-error');
 
 const { MODE_ENV, SECRET_KEY } = process.env;
+console.log(SECRET_KEY)
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;

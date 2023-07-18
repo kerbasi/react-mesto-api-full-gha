@@ -25,8 +25,6 @@ const auth = require('./middlewares/auth');
 
 const { PORT = 3000, DB_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 
-console.log(PORT, DB_URL);
-
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 1000, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
