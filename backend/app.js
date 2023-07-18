@@ -23,7 +23,7 @@ const {
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 
-const { PORT, DB_URL } = process.env;
+const { PORT = 4000, DB_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 
 
 const limiter = rateLimit({
@@ -33,7 +33,7 @@ const limiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-mongoose.connect(DB_URL || 'mongodb://localhost:27017/mestodb');
+mongoose.connect(DB_URL);
 
 app.use(limiter);
 app.use(helmet());
@@ -63,5 +63,5 @@ app.use(errors());
 
 app.use(errorHandler);
 
-app.listen(PORT || 4000, () => {
+app.listen(PORT, () => {
 });
