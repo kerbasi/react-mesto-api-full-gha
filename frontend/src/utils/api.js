@@ -95,7 +95,7 @@
 }
 
 const api = new Api({
-  baseUrl: "api.kerbasi.nomoredomains.xyz",
+  baseUrl: "http://api.kerbasi.nomoredomains.xyz/",
   headers: {
     "Content-Type": "application/json",
   },

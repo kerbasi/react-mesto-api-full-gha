@@ -1,4 +1,4 @@
-﻿export const BASE_URL = "api.kerbasi.nomoredomains.xyz";
+﻿export const BASE_URL = "http://api.kerbasi.nomoredomains.xyz/";
 
 const getResponseData = (res, status) => {
   if (!res.ok || (status && res.status !== status)) {
