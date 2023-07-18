@@ -75,7 +75,10 @@ function App() {
           setIsInfoTooltipState("fail");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setIsInfoTooltipState("fail");
+        console.log(err);
+      });
   };
 
   const handleLogin = (email, password) => {
@@ -90,7 +93,10 @@ function App() {
           setIsInfoTooltipState("fail");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsInfoTooltipState("fail");
+      });
   };
 
   const handleSignout = () => {
