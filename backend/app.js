@@ -6,10 +6,6 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const { celebrate } = require('celebrate');
 
-const corsOpt = {
-  origin: 'https://kerbasi.nomoredomains.xyz/',
-}
-
 const app = express();
 
 const mongoose = require('mongoose');
@@ -29,7 +25,7 @@ const auth = require('./middlewares/auth');
 
 const { PORT, DB_URL } = process.env;
 
-app.use(cors(corsOpt));
+app.use(cors());
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
