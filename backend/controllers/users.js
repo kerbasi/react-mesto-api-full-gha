@@ -8,6 +8,8 @@ const DuplicateError = require('../errors/duplicate-error');
 
 const SUCCESS_CREATE_CODE = 201;
 
+const { MODE_ENV, SECRET_KEY } = process.env;
+
 module.exports.createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
@@ -128,7 +130,7 @@ module.exports.login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, MODE_ENV !== 'production' ? 'some-secret-key' : SECRET_KEY, { expiresIn: '7d' });
       res.send({ token });
     })
     .catch((err) => next(new TokenError(err.message)));
